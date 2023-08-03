@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- <link rel="stylesheet" href="css/<%= css %>"> -->
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/<%= css %>">
 </head>
 <body>
     <nav id="navbar">
@@ -15,6 +15,19 @@
             </a>
         </div>
         <div>
-            <a href="/create-post">Create Post</a>
+            <% if(user){ %>
+                <div>
+                    <a href="/dashboard">
+                        <img src="/images/users/<%= user.avatar %>" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="/logout">Log out</a>
+                </div>
+              <% } else{ %>  
+                <div>
+                    <a href="/login">Login</a>
+                </div>
+             <% } %>
         </div>
     </nav>

@@ -3,9 +3,17 @@
   <ul>
     <% posts.forEach((post) => { %>
       <li class="post">
+        <div class="author">
+          <div>
+            <img class="author-img" src="/images/users/<%= post.author.avatar %>" alt="">
+          </div>
+          <div>
+            <p class="author-name"><%= post.author.first_name %><%= post.author.last_name %></p>
+            <small><%= post.createdAt %></small>
+          </div>
+        </div>
         <p class="post-title"><%= post.title %></p>
-        <small><%= post.createdAt %></small>
-        <div class="post-img"><img src="/images/<%= post.avatar %>" alt="" width="200px"></div>
+        <div class="post-img"><img src="/images/posts/<%= post.avatar %>" alt="" width="200px"></div>
       </li>
     <% }); %>
   </ul>

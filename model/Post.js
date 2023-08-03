@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const User = require('./User')
 const dateVietNam = require('../configs/time-zone')
 
 const PostSchema = new mongoose.Schema({
@@ -20,7 +21,11 @@ const PostSchema = new mongoose.Schema({
     updatedAt: {
         type: String,
         default: dateVietNam
+    },
+    author: { 
+        type: mongoose.Schema.Types.ObjectId, ref: 'User'
     }
+
 })
 
 const Post = mongoose.model('Post', PostSchema);

@@ -1,20 +1,14 @@
-<!-- <%- include ('includes/navbar.ejs') %> -->
-    <div>
-        <!-- <form action="/create-post" method="POST" enctype="multipart/form-data">
-            <input type="text" name="title" placeholder="Title post...">
-            <textarea name="description" id="" cols="30" rows="10">Description post</textarea>
-            <input type="file" name="avatar">
-            <button type="submit">Create post</button>
-        </form> -->
+<%- include ('includes/navbar.ejs') %>
+    <div class="form-create">
         <form method="POST" action="/upload-profile-pic" enctype="multipart/form-data">
             <div>
-                <input type="text" name="title" placeholder="Title post...">
-                <textarea name="description" id="" cols="30" rows="10">Description post</textarea>
-                <label>Select your profile picture:</label>
-                <input type="file" name="profile_pic" />
-            </div>
-            <div>
-                <input type="submit" name="btn_upload_profile_pic" value="Upload" />
+                <input type="text" name="title" placeholder="Title post..."><br><br>
+                <textarea name="description" id="" cols="30" rows="10">Description post</textarea><br><br>
+                <label for="avatar">Select your post picture:</label>
+                <input type="file" name="profile_pic" id="avatar"/>
+                <br>
+                <br>
+                <input type="submit" name="btn_upload_profile_pic" value="Upload" class="button-89"/>
             </div>
         </form>
     </div>

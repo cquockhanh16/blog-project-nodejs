@@ -25,8 +25,20 @@ nav img{
     width: 100px;
 }
 
-a{
+nav a{
     text-decoration: none;
     color: #fff;
     font-size: 22px;
 } 
+nav > div:last-child img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+nav > div:last-child{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}

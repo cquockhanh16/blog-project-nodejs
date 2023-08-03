@@ -10,6 +10,24 @@ ul{
     margin-top: 126px;
 }
 
+.author{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.author div:first-child{
+    display: flex;
+    align-items: center;
+}
+
+.author-img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .post{
     display: flex;
     flex-direction: column;
@@ -42,3 +60,4 @@ ul{
     cursor: pointer;
     color: #2e2c2c;
 }
+
