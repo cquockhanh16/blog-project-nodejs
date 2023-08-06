@@ -127,6 +127,54 @@ ul{
   .button-42:hover {
     background: #c01f1f;
   }
+  .profile > div{
+    text-align: center;
+  }
+  .profile > div > img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 3px;
+}
+.photos img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.gr-btn{
+    display: flex;
+    gap: 20px;
+  }
+  .gr-btn a {
+    text-decoration: none;
+  }
 
 
+  .form-interact{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
 
+.form-interact div{
+    padding: 0 50px;
+}
+
+.form-interact a {
+    text-decoration: none;
+}
+
+.form-interact button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}

@@ -252,6 +252,15 @@ body {
     color: #FFF;
     text-decoration: none;
 }
+.gr-btn{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 20px;
+}
+.gr-btn a {
+    color: #FFF;
+}
     </style>
 </head>
 <body>
@@ -264,22 +273,24 @@ body {
                     
                     <input type="text" name="email" placeholder="Mail">
                     <input type="password" name="password" placeholder="Password">
-                    
                     <input type="submit" value="Login"/>
-                    <button class="button-29">
-                        <a href="/">
-                            Back home
-                        </a>
-                    </button>
-                    <button class="button-29">
-                        <a href="/signup">
-                            Sign up
-                        </a>
-                    </button>
+                    <div class="gr-btn">
+                        <div >
+                            <a href="/" class="button-29">
+                                Back home
+                            </a>
+                        </div>
+                        <div >
+                            <a href="/signup" class="button-29">
+                                Sign up
+                            </a>
+                        </div>
+                    </div>
                 </fieldset>
-                
             </form>
+            
         </div>
+        
     </div>
 </body>
 </html>

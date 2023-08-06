@@ -1,0 +1,21 @@
+<%- include ('includes/navbar.ejs') %>
+<div style="width: 50%; margin:100px auto;">
+    <% if(users.length > 0) {%>
+        <% users.forEach((user) => { %>
+            <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+                <div>
+                    <img style="object-fit: cover;border-radius: 50%; width: 70px;height: 70px;" src="/images/users/<%= user.avatar %>" alt="">
+                </div>
+                <div>
+                    <p>
+                        <a style="text-decoration: none;" href="/profile?id=<%= user._id %>">
+                            <%= user.first_name %> <%= user.last_name %>
+                        </a>
+                    </p>
+                    <small><%= user.address %></small>
+                </div>
+            </div>
+          <% }); %> 
+    <% } %>
+</div>
+

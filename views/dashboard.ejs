@@ -1,27 +1,159 @@
 <%- include ('includes/navbar.ejs') %>
 <div class="container content">
-    <ul>
-      <% posts.forEach((post) => { %>
-        <li class="post">
-          <div class="author">
-            <div>
-                <div>
-                    <img class="author-img" src="/images/users/<%= post.author.avatar %>" alt="">
-                  </div>
-                  <div>
-                    <p class="author-name"><%= post.author.first_name %><%= post.author.last_name %></p>
-                    <small><%= post.createdAt %></small>
-                  </div>
-            </div>
-            <div>
-                <a href="/dashboard/edit-post/<%= post._id %>" class="button-41">Edit</a>
-                <form action="/dashboard/delete-post/<%= post._id %>" method="post">
-                    <button type="submit" class="button-42">Delete</button>
-                </form>
-            </div>
+    <div class="profile">
+      <div>
+        <img src="/images/users/<%= author.avatar %>" alt="">
+      </div>
+      <p style="text-align: center;margin-top: 10px;font-size: 20px;"><%= author.first_name %><%= author.last_name %></p>
+      <h2 style="margin-top: 30px;">Contact me:</h2>
+      <p><i class="fa-solid fa-envelope"></i>: <%= author.email %></p>
+      <p><i class="fa-solid fa-phone"></i>: <%= author.phone_number %></p>
+      <% if(posts.length > 0){ %>
+        <h2 style="margin-top: 30px;">Photos</h2>
+      <div class="photos">
+        <% posts.forEach((post) => { %>
+          <div>
+            <img src="/images/posts/<%= post.avatar %>" alt="" >
           </div>
-          <p class="post-title"><%= post.title %></p>
-          <div class="post-img"><img src="/images/posts/<%= post.avatar %>" alt="" width="200px"></div>
-        </li>
-      <% }); %>
-    </ul>
+        <% }); %>
+      </div>
+      <% } else{ %>  
+        <h2>No photos</h2>
+     <% } %>
+    </div>
+    
+    <% if(sharePosts.length > 0 || posts.length > 0){ %>
+      <h1 style="margin-top: 30px;margin-bottom: 20px;">Posts: </h1>
+      <% if(sharePosts.length > 0) {%>
+        <ul class="post-share">
+          <% sharePosts.forEach((post) => { %>
+            <li class="post">
+              <div class="author">
+                <div>
+                  <div>
+                      <img class="author-img" src="/images/users/<%= author.avatar %>" alt="">
+                    </div>
+                    <div>
+                      <p class="author-name" style="color: #000; font-size: 17px;font-weight: 600;"><%= author.first_name %> <%= author.last_name %> </p>
+                      <small>shared this post at <%= post.createdAt.toLocaleString() %></small>
+                    </div>
+              </div>
+              <% if (isShowBtn) {%>
+                <div class="gr-btn">
+                  <form action="/dashboard/delete-sharepost?id=<%= post._id %>" method="post">
+                      <button type="submit" onclick="return confirm('Do you delete this post?')" class="button-42">Delete</button>
+                  </form>
+              </div>
+              <% }; %>
+              </div>
+              <div class="post-img"><img src="/images/posts/<%= post.postId.avatar %>" alt="" width="200px"></div>
+              <p class="post-title"><%= post.postId.title %></p>
+              <div class="author">
+                <div>
+                    <div>
+                        <img class="author-img" src="/images/users/<%= post.postId.author.avatar %>" alt="">
+                      </div>
+                      <div>
+                        <p class="author-name" style="color: #000; font-size: 17px;font-weight: 600;"><%= post.postId.author.first_name %> <%= post.postId.author.last_name %></p>
+                        <small><%= post.postId.createdAt.toLocaleString() %></small>
+                      </div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center;justify-content: space-between;">
+                <small><%= post.postId.likes.length %> Likes</small>
+                <div>
+                  <small><%= post.postId.comments %> Comments</small>
+                  <small><%= post.postId.shares %> Shares</small>
+                </div>
+              </div>
+              <div class="form-interact">
+                <div title="Like post">
+                  <form action="/like-post?id=<%= post.postId._id %>" method="post">
+                    <button type="submit">
+                      <i class="fa-regular fa-thumbs-up"></i> Like
+                    </button>
+                  </form>
+                </div>
+                <div title="Comment post">
+                  <a href="/comment-post?id=<%= post.postId._id %>">
+                    <i class="fa-regular fa-comment"></i> Comment
+                  </a>
+                </div>
+                <div title="Share post">
+                  <form action="/share-post?id=<%= post.postId._id %>" method="post">
+                    <button type="submit">
+                      <i class="fa-solid fa-share"></i> Share
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </li>
+          <% }); %>
+        </ul>
+        <% } else{ %>  
+          <h2>No posts</h2>
+       <% }; %>
+      
+      <% if(posts.length > 0){ %>
+        <ul style="margin-top: 100px;">
+          <% posts.forEach((post) => { %>
+            <li class="post">
+              <div class="author">
+                <div>
+                    <div>
+                        <img class="author-img" src="/images/users/<%= author.avatar %>" alt="">
+                      </div>
+                      <div>
+                        <p class="author-name" style="color: #000; font-size: 17px;font-weight: 600;"><%= author.first_name %> <%= author.last_name %></p>
+                        <small><%= post.createdAt.toLocaleString() %></small>
+                      </div>
+                </div>
+                <% if (isShowBtn) {%>
+                  <div class="gr-btn">
+                    <a href="/dashboard/edit-post/<%= post._id %>" class="button-41">Edit</a>
+                    <form action="/dashboard/delete-post/<%= post._id %>" method="post">
+                        <button type="submit" onclick="return confirm('Do you delete this post?')" class="button-42">Delete</button>
+                    </form>
+                </div>
+                <% }; %>
+              </div>
+              <p class="post-title"><%= post.title %></p>
+              <div class="post-img"><img src="/images/posts/<%= post.avatar %>" alt="" width="200px"></div>
+              <div style="display: flex; align-items: center;justify-content: space-between;">
+                <small><%= post.likes.length %> Likes</small>
+                <div>
+                  <small><%= post.comments %> Comments</small>
+                  <small><%= post.shares %> Shares</small>
+                </div>
+              </div>
+              <div class="form-interact">
+                <div title="Like post">
+                  <form action="/like-post?id=<%= post._id %>" method="post">
+                    <button type="submit">
+                      <i class="fa-regular fa-thumbs-up"></i> Like
+                    </button>
+                  </form>
+                </div>
+                <div title="Comment post">
+                  <a href="/comment-post?id=<%= post._id %>">
+                    <i class="fa-regular fa-comment"></i> Comment
+                  </a>
+                </div>
+                <div title="Share post">
+                  <form action="/share-post?id=<%= post._id %>" method="post">
+                    <button type="submit">
+                      <i class="fa-solid fa-share"></i> Share
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else{ %>  
+          <h2>No posts</h2>
+      <% }; %>
+    <% } else{ %>  
+      <h2>No posts</h2>
+   <% }; %>
+</div>

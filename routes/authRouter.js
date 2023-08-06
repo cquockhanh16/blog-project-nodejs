@@ -11,7 +11,7 @@ const upload = multer({storage: storage, fileFilter: imageFilter})
 router.get('/signup', authController.getPageSignUp);
 
 // sign up
-router.post('/signup', upload.single('avatar'), authController.postSignUp);
+router.post('/signup', upload.single('user_pic'), authController.postSignUp);
 
 // get page login
 router.get('/login', authController.getPageLogin);

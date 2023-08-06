@@ -61,3 +61,50 @@ ul{
     color: #2e2c2c;
 }
 
+.form-interact{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.form-interact div{
+    padding: 0 50px;
+}
+
+.form-interact a {
+    text-decoration: none;
+}
+
+.form-interact button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.form-cmt{
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    padding: 8px 30px;
+    justify-content: space-between;
+}
+
+.form-cmt input{
+    outline: none;
+    width: 90%;
+    border: none;
+    background-color: transparent;
+}
+
+.form-cmt button{
+    font-size: 20px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+}
+

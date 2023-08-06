@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/<%= css %>">
 </head>
@@ -11,18 +12,36 @@
     <nav id="navbar">
         <div>
             <a href="/">
-                <img src="https://png.pngtree.com/png-vector/20230304/ourmid/pngtree-colorful-blog-speech-bubble-vector-png-image_6633021.png" alt="">
+                <!-- <img src="https://png.pngtree.com/png-vector/20230304/ourmid/pngtree-colorful-blog-speech-bubble-vector-png-image_6633021.png" alt=""> -->
+                <i class="fa-brands fa-blogger"  style="font-size: 50px;"></i>
             </a>
         </div>
         <div>
+            <form action="/results" method="get">
+                <input type="text" placeholder="Search..." name="seacrh_query">
+                <select name="select" id="">
+                    <option value="0">User</option>
+                    <option value="1">Post</option>
+                </select>
+                <button hidden type="submit">Search</button>
+            </form>
+        </div>
+        <div>
             <% if(user){ %>
-                <div>
-                    <a href="/dashboard">
+                <div title="profile">
+                    <a href="/dashboard" title="<%= user.last_name %>">
                         <img src="/images/users/<%= user.avatar %>" alt="">
                     </a>
                 </div>
-                <div>
-                    <a href="/logout">Log out</a>
+                <div title="create post">
+                    <a href="/create-post">
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </a>
+                </div>
+                <div title="Log out">
+                    <a href="/logout" >
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                    </a>
                 </div>
               <% } else{ %>  
                 <div>

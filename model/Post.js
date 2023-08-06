@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-const User = require('./User')
-const dateVietNam = require('../configs/time-zone')
+const moment = require('moment-timezone')
 
 const PostSchema = new mongoose.Schema({
     title: {
@@ -14,18 +13,31 @@ const PostSchema = new mongoose.Schema({
     avatar: {
         type: String
     },
-    createdAt: {
-        type: String,
-        default: dateVietNam
-    },
-    updatedAt: {
-        type: String,
-        default: dateVietNam
-    },
     author: { 
         type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    },
+    likes:{
+        type: Array,
+        default: []
+    },
+    comments: {
+        type: Number,
+        default: 0
+    },
+    shares: {
+        type: Number,
+        default: 0
     }
-
+}, {
+    timestamps: true,
+    timestamps: {
+        currentTime: () =>  {
+            const currentTimeUTC = new Date();
+            const vietnamTime = moment(currentTimeUTC).tz('Asia/Ho_Chi_Minh').toDate();
+            //const vietnamTime = new Date(currentTimeUTC.getTime() + 7 * 60 * 60 * 1000);
+            return vietnamTime;
+        }
+    }
 })
 
 const Post = mongoose.model('Post', PostSchema);

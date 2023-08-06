@@ -1,0 +1,18 @@
+<%- include ('includes/navbar.ejs') %>
+    <div class="form-create">
+        <form method="POST" action="/dashboard/edit-post/<%= post._id %>" enctype="multipart/form-data">
+            <div>
+                <input type="text" name="title" placeholder="Title post..." value="<%= post.title %>"><br><br>
+                <textarea name="description" id="" cols="30" rows="10"><%= post.description %></textarea><br><br>
+                <img src="/images/posts/<%= post.avatar %>" width="400" alt="">
+                <br>
+                <label for="avatar">Select your post picture:</label>
+                <input type="file" name="post_pic" id="avatar"/>
+                <br>
+                <br>
+                <input type="submit" name="btn_upload_profile_pic" value="Update" class="button-89"/>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

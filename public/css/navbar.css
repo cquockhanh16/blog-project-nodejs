@@ -12,7 +12,7 @@ body{
 nav {
     display: flex;
     justify-content: space-between;
-    padding: 0px 100px;
+    padding: 20px 100px;
     background-color: #36a9e6;
     align-items: center;
     position: fixed; 
@@ -42,3 +42,20 @@ nav > div:last-child{
     gap: 10px;
     align-items: center;
 }
+nav form input{
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    width: 400px;
+    background-color: #c0e2f5;
+    color: #010101;
+}
+
+select {
+    padding: 8px 12px;
+    outline: none;
+    border-radius: 5px;
+    background-color:  #c0e2f5;
+}
+

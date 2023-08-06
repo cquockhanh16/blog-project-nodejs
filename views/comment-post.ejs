@@ -1,8 +1,7 @@
 <%- include ('includes/navbar.ejs') %>
+
 <div class="container content">
-  <ul>
-    <% posts.forEach((post) => { %>
-      <li class="post">
+    <li class="post">
         <div class="author">
           <div>
               <img class="author-img" src="/images/users/<%= post.author.avatar %>" alt="">
@@ -19,12 +18,12 @@
         <p class="post-title"><%= post.title %></p>
         <div class="post-img"><img src="/images/posts/<%= post.avatar %>" alt="" width="200px"></div>
         <div style="display: flex; align-items: center;justify-content: space-between;">
-          <small><%= post.likes.length %> Likes</small>
-          <div>
-            <small><%= post.comments %> Comments</small>
-            <small><%= post.shares %> Shares</small>
+            <small><%= post.likes.length %> Likes</small>
+            <div>
+              <small><%= post.comments %> Comments</small>
+              <small><%= post.shares %> Shares</small>
+            </div>
           </div>
-        </div>
         <div class="form-interact">
           <div title="Like post">
             <form action="/like-post?id=<%= post._id %>" method="post">
@@ -47,40 +46,29 @@
           </div>
         </div>
       </li>
-    <% }); %> 
-  </ul>
-  <% if(numberPage){ %>
-    <div class="page">
-      <% for(var i=1; i<= numberPage; i++) {%>
-        <small class="page-number">`
-          <a href="/posts/page/<%= i %>">
-            <%= i %>
-          </a>
-        </small>
-     <% } %>
-    </div>
-  <% } %>
+      <% if(user) {%>
+        <form class="form-cmt" action="/comment-post?id=<%= post._id %>" method="post">
+            <input type="text" name="comment" placeholder="Write comment...">
+            <button type="submit">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+        <%}%>
+      <ul>
+        <% if(comments && comments.length > 0){ %>
+            <% comments.forEach((cmt) => { %>
+                <li style="display: flex; align-items: center;gap: 10px; margin-bottom: 5px;">
+                    <div>
+                        <img style="width: 50px;height: 50px;border-radius: 50%;object-fit: cover;" src="/images/users/<%= cmt.authorId.avatar %>" alt="">
+                    </div>
+                    <div>
+                        <h4><%= cmt.authorId.last_name %></h4>
+                        <small><%= cmt.content %></small>
+                    </div>
+                </li>
+            <% }); %> 
+        <% }else{ %>
+            <p>No comments</p>
+        <% } %>
+      </ul>
 </div>
-<!-- <script>
-  // Lấy ra thanh nav
-const navbar = document.getElementById("navbar");
-
-let prevScrollpos = window.pageYOffset;
-
-window.onscroll = function() {
-  console.log('chu quoc khan')
-  const currentScrollPos = window.pageYOffset;
-  
-  if (prevScrollpos > currentScrollPos) {
-    // Khi scroll lên, hiển thị thanh nav
-    navbar.style.top = "0";
-  } else {
-    // Khi scroll xuống, ẩn thanh nav
-    navbar.style.top = "-160px";
-  }
-
-  prevScrollpos = currentScrollPos;
-};
-</script> -->
-</body>
-</html>
